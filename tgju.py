@@ -3,6 +3,7 @@ Retrieve price of currencies from tgju.org
 '''
 
 import sys
+from datetime import datetime
 import requests
 from bs4 import BeautifulSoup
 
@@ -12,8 +13,8 @@ Usage:
     python tgju.py --help # show this message
     python tgju.py --list # show list of currencies
     python tgju.py --all # show price of all currencies
-    ptyhon tgju.py --ledger # show price of all currencies in ledger database format
-    python tgju.py <currency> # show price of currency
+    python tgju.py --ledger # show price of all currencies in ledger database format
+    python tgju.py <currency> # show price of currencies
     python tgju.py <currency1> <currency2> ... # show price of currencies
 '''
 
@@ -59,7 +60,10 @@ if __name__ == '__main__':
         for currency, _ in CURRENCIES.items():
             print(currency)
     elif sys.argv[1] == '--ledger':
-        pass
+        for currency, key in CURRENCIES.items():
+            price = get_price(key)
+            now = datetime.now().strftime('%Y/%m/%d %H:%M:%S')
+            print(f'P {now} {currency} {price} IRR')
     elif sys.argv[1] == '--all':
         for currency, key in CURRENCIES.items():
             price = get_price(key)
