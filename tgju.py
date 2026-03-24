@@ -20,6 +20,7 @@ Usage:
 
 CURRENCIES = {
     'USD': 'price_dollar_rl',
+    'CAD': 'price_cad',
     'EUR': 'price_eur',
     'EMAMICOIN': 'sekee',
     'BAHARAZADICOIN': 'sekeb',
